@@ -23,8 +23,10 @@ class GenericDataProvider:
         else:
             self.data = {}  # In-memory storage for JSON data
 
-            use_predefined_json = os.getenv("SI_SAVE_JSON")
-            if use_predefined_json is not None and use_predefined_json.lower() == "true":
+            self.use_predefined_json = False  # Flag to indicate if predefined JSON data should be used
+
+            env_use_predefined_json = os.getenv("SI_SAVE_JSON")
+            if env_use_predefined_json is not None and env_use_predefined_json.lower() == "true":
                 self.use_predefined_json = True
                 # Load predefined JSON data from a file if the file exists
                 if os.path.exists("data.json"):
